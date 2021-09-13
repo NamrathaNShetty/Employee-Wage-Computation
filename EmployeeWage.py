@@ -9,41 +9,48 @@
 import random
 print("Welcome to employee wage computation")
 
-def checkAttendance():
+def calculateHour(attendanceStatus):
     """
     Description:
-        This function is to check whether employee is present or absent.
-        Employee daily wage is calculated for full day and part time.
-    """    
-
-    isFullTime = 1
-    isPartTime = 2
-    day_Hour=0
-
-    wage_Per_Hour = 20
-    
-    #emp_Check = random.randint(0,2)
-
-    if emp_Check == isFullTime:
+        This function determine the work hours
+    Parameter:
+        attendanceStatus is used to determine work hour of employee
+    Return:
+        the functution return 8 or 4 or 0 value as work hour
+    """
+    if attendanceStatus == isFullTime:
         day_Hour = 8
-    elif emp_Check == isPartTime:
+    elif attendanceStatus == isPartTime:
         day_Hour = 4 
     else:
-        print("Employee is absent")
-        
-    employee_Wage = wage_Per_Hour * day_Hour
-    print("Employee wage is:", employee_Wage)
+        day_Hour = 0
+    return day_Hour
+
+def calculateWage():
+    """
+    Description:
+        this function calculate employee wage
+    Return:
+        this function return total employee wage of a month
+    """
+    wage_Per_Hour = 20
+    working_Days = 20
+    total_Wage = 0
+    for day in range(working_Days):
+        attendance = random.randint(0,2)
+        attendanceStatus = switcher.get(attendance)
+        workingHours = calculateHour(attendanceStatus)
+        total_Wage += workingHours * wage_Per_Hour
+    return total_Wage
 
 absent = 0
-fullPresent = 1
-part_present = 2
+isFullTime = 1
+isPartTime = 2
 
 switcher = {
     0: absent,
-    1: fullPresent,
-    2: part_present
+    1: isFullTime,
+    2: isFullTime,
 }
 
-emp_Check = random.randint(0,2)
-attendance = switcher.get(emp_Check)
-checkAttendance()
+print("Total employee wage for month is:",calculateWage())
