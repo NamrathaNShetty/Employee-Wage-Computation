@@ -22,7 +22,7 @@ def checkAttendance():
 
     wage_Per_Hour = 20
     
-    emp_Check = random.randint(0,2)
+    #emp_Check = random.randint(0,2)
 
     if emp_Check == isFullTime:
         day_Hour = 8
@@ -31,9 +31,19 @@ def checkAttendance():
     else:
         print("Employee is absent")
         
-
     employee_Wage = wage_Per_Hour * day_Hour
     print("Employee wage is:", employee_Wage)
 
-if __name__ == "__main__":
-    checkAttendance()
+absent = 0
+fullPresent = 1
+part_present = 2
+
+switcher = {
+    0: absent,
+    1: fullPresent,
+    2: part_present
+}
+
+emp_Check = random.randint(0,2)
+attendance = switcher.get(emp_Check)
+checkAttendance()
