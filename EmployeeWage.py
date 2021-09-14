@@ -46,14 +46,19 @@ def calculateWage():
     maximum_Working_Days = 20
     maximum_Working_Hours = 100
     total_Wage = 0
+    daily_Wage_List = []
+
     while working_Days < maximum_Working_Days and total_Working_Hours < maximum_Working_Hours:
         attendance = random.randint(0,2)
         attendanceStatus = switcher.get(attendance)
         working_Hours = calculateHour(attendanceStatus)
-        total_Wage += working_Hours * wage_Per_Hour
+        daily_Wage = working_Hours * wage_Per_Hour
+        daily_Wage_List.append(daily_Wage)
+        total_Wage += daily_Wage
         total_Working_Hours += working_Hours
         working_Days += 1
-        getWorkHours(total_Working_Hours)
+    getWorkHours(total_Working_Hours)
+    print("Daily wage:", daily_Wage_List)
     return total_Wage
 
 
